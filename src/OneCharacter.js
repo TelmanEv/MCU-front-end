@@ -11,7 +11,13 @@ function OneCharacter() {
     const [debutYearInput, setDebutYearInput] = useState("");
 
     useEffect(() => {
-        fetch(`https://mcubackend.onrender.com/api/getCharacterByName/${name}`)
+        fetch(`${API_URL}/getCharacterByName/${name}`, {
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+                "x-access-token": "token-value",
+            }
+        })
             .then(async res => {
                 let result = await res.json()
                 setCharacter(result.payload)
@@ -34,9 +40,10 @@ function OneCharacter() {
             debutYear: debutYearInput
         }
 
-        fetch(`https://mcubackend.onrender.com/api/updateCharacter/${character._id}`, {
+        fetch(`${API_URL}/updateCharacter/${character._id}`, {
             method: "put",
             headers: {
+                "Accept": "application/json",
                 "Content-Type": "application/json",
                 "x-access-token": "token-value",
             },
@@ -46,9 +53,10 @@ function OneCharacter() {
         })
     }
     function handleDelete() {
-        fetch(`https://mcubackend.onrender.com/api/deleteCharacter/${character._id}`, {
+        fetch(`${API_URL}/deleteCharacter/${character._id}`, {
             method: "delete",
             headers: {
+                "Accept": "application/json",
                 "Content-Type": "application/json",
                 "x-access-token": "token-value",
             }
