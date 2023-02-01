@@ -1,17 +1,15 @@
-// imrse
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-//import the api url from
 import { API_URL } from './constants';
-import axios from 'axios;'
+import axios from 'axios';
 
 function AllCharacters() {
     const [serverData, setServerData] = useState([]);
 
     useEffect(() => {
         axios.get(`${API_URL}/allCharacters`)
-          .then(async res => {
-            const data = await res.json();
+          .then(res => {
+            const data = res.data;
     
             console.log(data);
     
