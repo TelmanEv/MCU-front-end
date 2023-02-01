@@ -1,12 +1,15 @@
 // imrse
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+//import the api url from
+import { API_URL } from './constants';
+import axios from 'axios;'
 
 function AllCharacters() {
     const [serverData, setServerData] = useState([]);
 
     useEffect(() => {
-        fetch('https://mcubackend.onrender.com/api/allCharacters')
+        axios.get(`${API_URL}/allCharacters`)
           .then(async res => {
             const data = await res.json();
     
